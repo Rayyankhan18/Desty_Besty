@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
 // Components
 import ScrollSection from './components/ScrollSection';
@@ -31,9 +28,6 @@ import {
   VolumeX,
   Sparkles
 } from 'lucide-react';
-
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
 
 const DestyBesty = () => {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
