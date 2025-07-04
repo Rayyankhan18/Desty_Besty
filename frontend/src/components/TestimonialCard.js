@@ -1,42 +1,60 @@
 import React from 'react';
 import { Card, CardContent } from './ui/card';
-import { Star, Quote } from 'lucide-react';
+import { Star, Quote, Shield } from 'lucide-react';
+import { Badge } from './ui/badge';
 
 const TestimonialCard = ({ testimonial }) => {
   return (
-    <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl">
-      <CardContent className="p-6">
-        <div className="flex items-start gap-4">
-          <img 
-            src={testimonial.avatar} 
-            alt={testimonial.name}
-            className="w-12 h-12 rounded-full object-cover border-2 border-white/30"
-          />
+    <Card className="bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-700 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-white/10 h-full">
+      <CardContent className="p-8 h-full flex flex-col">
+        <div className="flex items-start gap-4 mb-6">
+          <div className="relative">
+            <img 
+              src={testimonial.avatar} 
+              alt={`${testimonial.name} profile picture`}
+              className="w-16 h-16 rounded-full object-cover border-2 border-white/20 shadow-lg"
+            />
+            {testimonial.verified && (
+              <div className="absolute -bottom-1 -right-1 bg-emerald-500 rounded-full p-1">
+                <Shield className="h-3 w-3 text-white" />
+              </div>
+            )}
+          </div>
           
           <div className="flex-1">
-            <div className="flex items-center gap-2 mb-2">
-              <h4 className="font-semibold text-white">{testimonial.name}</h4>
-              <span className="text-white/60 text-sm">• {testimonial.location}</span>
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="font-bold text-lg text-white">{testimonial.name}</h4>
+              {testimonial.verified && (
+                <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">
+                  Verified
+                </Badge>
+              )}
             </div>
+            <p className="text-white/70 text-sm">{testimonial.location}</p>
             
-            <div className="flex items-center gap-1 mb-3">
+            <div className="flex items-center gap-1 mt-2">
               {[...Array(testimonial.rating)].map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
               ))}
             </div>
-            
-            <div className="relative">
-              <Quote className="h-5 w-5 text-white/40 absolute -top-2 -left-1" />
-              <p className="text-white/90 italic pl-4">
-                "{testimonial.text}"
-              </p>
-            </div>
-            
-            <div className="mt-3 pt-3 border-t border-white/20">
-              <span className="text-white/70 text-sm">
-                Discovered: <span className="text-blue-300">{testimonial.destination}</span>
-              </span>
-            </div>
+          </div>
+        </div>
+        
+        <div className="relative flex-1">
+          <Quote className="h-8 w-8 text-white/20 absolute -top-2 -left-2" />
+          <blockquote className="text-white/90 italic leading-relaxed pl-6 text-base">
+            "{testimonial.text}"
+          </blockquote>
+        </div>
+        
+        <div className="mt-6 pt-4 border-t border-white/10">
+          <div className="flex items-center justify-between">
+            <span className="text-white/70 text-sm">
+              Discovered via Desty Besty
+            </span>
+            <Badge variant="outline" className="bg-white/5 text-cyan-300 border-cyan-500/30">
+              {testimonial.destination}
+            </Badge>
           </div>
         </div>
       </CardContent>
