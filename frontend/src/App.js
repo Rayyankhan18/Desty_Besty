@@ -83,16 +83,9 @@ const DestyBesty = () => {
       setIsLoading(false);
     }, 500);
 
-    // Smooth scroll initialization
-    gsap.to(window, {
-      scrollTo: 0,
-      duration: 0
-    });
-
     // Cleanup on unmount
     return () => {
       clearTimeout(timer);
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
