@@ -51,10 +51,20 @@ const DestyBesty = () => {
     stargazing: 'https://images.pexels.com/photos/18646435/pexels-photo-18646435.jpeg'
   };
 
+  // Get all destinations as flat array
+  const allDestinations = [
+    ...destinations.forest,
+    ...destinations.waterfall,
+    ...destinations.mountain
+  ];
+
   // Filter destinations based on category
-  const filteredDestinations = selectedCategory === 'ALL' 
-    ? destinations 
-    : destinations.filter(dest => dest.category === selectedCategory);
+  const getFilteredDestinations = (category) => {
+    if (category === 'ALL') return allDestinations;
+    return allDestinations.filter(dest => dest.category === category);
+  };
+
+  const filteredDestinations = getFilteredDestinations(selectedCategory);
 
   // Handle destination save
   const handleSaveDestination = (id, saved) => {
@@ -79,7 +89,12 @@ const DestyBesty = () => {
     setTimeout(() => {
       setShowLocationModal(false);
       // In a real app, this would show actual nearby locations
-    }, 2000);
+    }, 3000);
+  };
+
+  // Scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
