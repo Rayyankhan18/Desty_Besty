@@ -7,12 +7,13 @@ import ScrollSection from './components/ScrollSection';
 import DestinationCard from './components/DestinationCard';
 import CategoryFilter from './components/CategoryFilter';
 import TestimonialCard from './components/TestimonialCard';
+import Footer from './components/Footer';
 import { Button } from './components/ui/button';
 import { Card, CardContent } from './components/ui/card';
 import { Badge } from './components/ui/badge';
 
 // Data
-import { destinations, testimonials, mockUserLocation, appStats } from './data/mock';
+import { destinations, testimonials, mockUserLocation, appStats, categories } from './data/mock';
 
 // Icons
 import { 
@@ -26,7 +27,11 @@ import {
   Play,
   Volume2,
   VolumeX,
-  Sparkles
+  Sparkles,
+  Camera,
+  Bookmark,
+  TrendingUp,
+  Award
 } from 'lucide-react';
 
 const DestyBesty = () => {
