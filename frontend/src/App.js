@@ -416,23 +416,57 @@ const DestyBesty = () => {
       {/* Footer */}
       <Footer />
 
-      {/* Location Modal */}
+      {/* Enhanced Location Modal */}
       {showLocationModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20 max-w-md mx-4">
-            <CardContent className="p-6 text-center">
-              <MapPin className="h-12 w-12 text-blue-400 mx-auto mb-4 animate-pulse" />
-              <h3 className="text-xl font-semibold text-white mb-2">Finding trails near you...</h3>
-              <p className="text-white/70 mb-4">Discovering amazing destinations in {mockUserLocation.city}</p>
-              <div className="space-y-2">
-                {mockUserLocation.nearbyDestinations.map((dest, index) => (
-                  <div key={index} className="flex justify-between items-center text-white/80">
-                    <span>{dest.name}</span>
-                    <Badge variant="outline" className="text-white/70 border-white/30">
-                      {dest.distance}
-                    </Badge>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-lg flex items-center justify-center z-50 p-4">
+          <Card className="bg-white/10 backdrop-blur-lg border border-white/20 max-w-lg w-full mx-4 transform animate-in">
+            <CardContent className="p-8 text-center">
+              <div className="animate-pulse mb-6">
+                <MapPin className="h-16 w-16 text-cyan-400 mx-auto mb-4" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-3">Discovering Amazing Trails</h3>
+              <p className="text-white/80 mb-6">Finding the perfect adventures near {mockUserLocation.city}, {mockUserLocation.country}</p>
+              
+              <div className="space-y-4 mb-6">
+                <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                  <h4 className="text-white font-medium mb-3">Nearby Adventures</h4>
+                  <div className="space-y-3">
+                    {mockUserLocation.nearbyDestinations.map((dest, index) => (
+                      <div key={index} className="flex justify-between items-center">
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                          <span className="text-white/90 text-sm">{dest.name}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline" className="text-white/70 border-white/30 text-xs">
+                            {dest.distance}
+                          </Badge>
+                          <div className="flex items-center">
+                            <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
+                            <span className="text-white/70 text-xs ml-1">{dest.rating}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button 
+                  className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-0 flex-1"
+                  onClick={() => setShowLocationModal(false)}
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  Get the App
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="bg-white/10 border-white/30 text-white hover:bg-white/20"
+                  onClick={() => setShowLocationModal(false)}
+                >
+                  Close
+                </Button>
               </div>
             </CardContent>
           </Card>
