@@ -131,7 +131,7 @@ const DestyBesty = () => {
         {isAudioEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
       </Button>
 
-      {/* Scene 1: Hero/Trailhead */}
+      {/* Scene 1: Hero - Sunrise Forest Scene */}
       <ScrollSection
         id="hero"
         backgroundImage={sceneImages.hero}
@@ -140,26 +140,26 @@ const DestyBesty = () => {
       >
         <div className="text-center max-w-4xl mx-auto px-6">
           <div className="animate-in">
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight">
-              Your Next
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                Destination
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              Begin Your Journey
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400">
+                into the Wild
               </span>
-              Awaits
             </h1>
           </div>
           
           <div className="animate-in">
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Discover hidden gems, save unforgettable places, and let wanderlust guide your journey
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Every sunrise marks a new trail, every forest hides an unforgettable story. 
+              Start exploring with Desty Besty.
             </p>
           </div>
           
           <div className="animate-in flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white border-0 shadow-2xl transform hover:scale-105 transition-all duration-300"
-              onClick={() => document.getElementById('forest').scrollIntoView({ behavior: 'smooth' })}
+              className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white border-0 shadow-2xl transform hover:scale-105 transition-all duration-300 px-8 py-3"
+              onClick={() => document.getElementById('forest')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <Sparkles className="mr-2 h-5 w-5" />
               Explore Now
@@ -168,7 +168,7 @@ const DestyBesty = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 transform hover:scale-105 transition-all duration-300"
+              className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 transform hover:scale-105 transition-all duration-300 px-8 py-3"
               onClick={handleFindNearbyTrails}
             >
               <Download className="mr-2 h-5 w-5" />
@@ -178,7 +178,7 @@ const DestyBesty = () => {
         </div>
       </ScrollSection>
 
-      {/* Scene 2: Forest/Destinations */}
+      {/* Scene 2: Dense Forest Scene */}
       <ScrollSection
         id="forest"
         backgroundImage={sceneImages.forest}
@@ -187,26 +187,26 @@ const DestyBesty = () => {
       >
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="animate-in text-center mb-12">
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Discover Your
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-                Perfect Trail
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              Find Serenity
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+                Among the Pines
               </span>
             </h2>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              From ancient forests to crystal lakes, find destinations that match your adventurous spirit
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Reconnect with nature as you discover the world's most peaceful and untouched forest trails.
             </p>
           </div>
           
-          <div className="animate-in">
+          <div className="animate-in mb-8">
             <CategoryFilter 
               selectedCategory={selectedCategory}
               onCategoryChange={setSelectedCategory}
             />
           </div>
           
-          <div className="animate-in grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            {filteredDestinations.map((destination) => (
+          <div className="animate-in grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {(selectedCategory === 'ALL' ? destinations.forest : getFilteredDestinations(selectedCategory)).slice(0, 3).map((destination) => (
               <DestinationCard
                 key={destination.id}
                 destination={destination}
@@ -218,60 +218,67 @@ const DestyBesty = () => {
         </div>
       </ScrollSection>
 
-      {/* Scene 3: Waterfall/Save Feature */}
+      {/* Scene 3: Waterfall Scene */}
       <ScrollSection
         id="waterfall"
         backgroundImage={sceneImages.waterfall}
         className="flex items-center"
         parallaxSpeed={0.5}
       >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="animate-in">
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
-              Save
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                Unforgettable
+        <div className="max-w-7xl mx-auto px-6 py-20">
+          <div className="animate-in text-center mb-12">
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              Chase Waterfalls,
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+                Capture Memories
               </span>
-              Places
             </h2>
-          </div>
-          
-          <div className="animate-in">
-            <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-              Create your personal collection of dream destinations. Never lose track of that perfect spot again.
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              From thunderous cascades to hidden gems, our waterfall adventures will leave you breathless.
             </p>
           </div>
           
-          <div className="animate-in grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105">
+          <div className="animate-in grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {destinations.waterfall.map((destination) => (
+              <DestinationCard
+                key={destination.id}
+                destination={destination}
+                onSave={handleSaveDestination}
+                onView={handleViewDestination}
+              />
+            ))}
+          </div>
+          
+          <div className="animate-in grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <Card className="bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105">
               <CardContent className="p-6 text-center">
-                <Heart className="h-12 w-12 text-red-400 mx-auto mb-4" />
+                <Camera className="h-12 w-12 text-cyan-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">Capture Moments</h3>
+                <p className="text-white/70">Perfect your photography with nature's most dramatic backdrops</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105">
+              <CardContent className="p-6 text-center">
+                <Bookmark className="h-12 w-12 text-emerald-400 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">Save Favorites</h3>
-                <p className="text-white/70">Bookmark places that capture your heart</p>
+                <p className="text-white/70">Build your personal collection of breathtaking waterfalls</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105">
+            <Card className="bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105">
               <CardContent className="p-6 text-center">
-                <MapPin className="h-12 w-12 text-blue-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">Plan Routes</h3>
-                <p className="text-white/70">Create the perfect adventure itinerary</p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <Users className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                <Users className="h-12 w-12 text-indigo-400 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">Share Adventures</h3>
-                <p className="text-white/70">Connect with fellow explorers</p>
+                <p className="text-white/70">Connect with fellow explorers and share your discoveries</p>
               </CardContent>
             </Card>
           </div>
           
-          <div className="animate-in">
+          <div className="animate-in text-center">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-0 shadow-2xl transform hover:scale-105 transition-all duration-300"
+              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-0 shadow-2xl transform hover:scale-105 transition-all duration-300 px-8 py-3"
               onClick={handleFindNearbyTrails}
             >
               <MapPin className="mr-2 h-5 w-5" />
@@ -281,7 +288,7 @@ const DestyBesty = () => {
         </div>
       </ScrollSection>
 
-      {/* Scene 4: Mountain/Testimonials */}
+      {/* Scene 4: Mountain Peak Scene */}
       <ScrollSection
         id="mountain"
         backgroundImage={sceneImages.mountain}
@@ -290,14 +297,14 @@ const DestyBesty = () => {
       >
         <div className="max-w-6xl mx-auto px-6 py-20">
           <div className="animate-in text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Stories from
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">
-                Fellow Explorers
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              Reach
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-rose-400">
+                New Heights
               </span>
             </h2>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Join thousands of adventurers who've discovered their next favorite destination
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              From snow-covered peaks to golden alpine sunsets, find your inspiration atop the world.
             </p>
           </div>
           
@@ -307,47 +314,47 @@ const DestyBesty = () => {
             ))}
           </div>
           
-          <div className="animate-in grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">{appStats.totalDestinations}</div>
-              <div className="text-white/70">Destinations</div>
+          <div className="animate-in grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
+            <div className="space-y-2">
+              <div className="text-3xl md:text-4xl font-bold text-white">{appStats.totalDestinations}</div>
+              <div className="text-white/70 text-sm">Destinations</div>
             </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">{appStats.activeUsers}</div>
-              <div className="text-white/70">Active Users</div>
+            <div className="space-y-2">
+              <div className="text-3xl md:text-4xl font-bold text-white">{appStats.activeUsers}</div>
+              <div className="text-white/70 text-sm">Active Users</div>
             </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">{appStats.countriesSupported}</div>
-              <div className="text-white/70">Countries</div>
+            <div className="space-y-2">
+              <div className="text-3xl md:text-4xl font-bold text-white">{appStats.countriesSupported}</div>
+              <div className="text-white/70 text-sm">Countries</div>
             </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">{appStats.avgRating}</div>
-              <div className="text-white/70">Avg Rating</div>
+            <div className="space-y-2">
+              <div className="text-3xl md:text-4xl font-bold text-white">{appStats.avgRating}</div>
+              <div className="text-white/70 text-sm">Avg Rating</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl md:text-4xl font-bold text-white">{appStats.totalReviews}</div>
+              <div className="text-white/70 text-sm">Reviews</div>
             </div>
           </div>
         </div>
       </ScrollSection>
 
-      {/* Scene 5: Stargazing/Final CTA */}
+      {/* Scene 5: Stargazing Campsite Scene */}
       <ScrollSection
         id="stargazing"
         backgroundImage={sceneImages.stargazing}
         className="flex items-center"
         parallaxSpeed={0.2}
       >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="animate-in">
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
+        <div className="max-w-4xl mx-auto px-6 py-20 text-center">
+          <div className="animate-in mb-12">
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Begin Your
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-                Journey
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                Journey Tonight
               </span>
-              Tonight
             </h2>
-          </div>
-          
-          <div className="animate-in">
-            <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-8">
               Under the stars, every trail becomes a story. Every destination becomes a memory. 
               Your adventure starts with a single tap.
             </p>
@@ -356,8 +363,8 @@ const DestyBesty = () => {
           <div className="animate-in flex flex-col sm:flex-row gap-6 justify-center mb-12">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 shadow-2xl transform hover:scale-105 transition-all duration-300"
-              onClick={handleFindNearbyTrails}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 shadow-2xl transform hover:scale-105 transition-all duration-300 px-8 py-3"
+              onClick={scrollToTop}
             >
               <Play className="mr-2 h-5 w-5" />
               Start Exploring
@@ -366,7 +373,7 @@ const DestyBesty = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 transform hover:scale-105 transition-all duration-300"
+              className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 transform hover:scale-105 transition-all duration-300 px-8 py-3"
               onClick={handleFindNearbyTrails}
             >
               <Download className="mr-2 h-5 w-5" />
@@ -374,24 +381,40 @@ const DestyBesty = () => {
             </Button>
           </div>
           
-          <div className="animate-in flex justify-center gap-8">
-            <div className="flex items-center gap-2">
-              <img 
-                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                alt="Download on App Store" 
-                className="h-12 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <img 
-                src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                alt="Get it on Google Play" 
-                className="h-12 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-              />
+          <div className="animate-in">
+            <p className="text-white/70 text-sm mb-6">Available on all platforms</p>
+            <div className="flex justify-center gap-8">
+              <a 
+                href="https://apps.apple.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block transition-transform hover:scale-105"
+              >
+                <img 
+                  src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                  alt="Download on the App Store" 
+                  className="h-12 opacity-80 hover:opacity-100 transition-opacity filter brightness-110"
+                />
+              </a>
+              <a 
+                href="https://play.google.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block transition-transform hover:scale-105"
+              >
+                <img 
+                  src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+                  alt="Get it on Google Play" 
+                  className="h-12 opacity-80 hover:opacity-100 transition-opacity"
+                />
+              </a>
             </div>
           </div>
         </div>
       </ScrollSection>
+
+      {/* Footer */}
+      <Footer />
 
       {/* Location Modal */}
       {showLocationModal && (
