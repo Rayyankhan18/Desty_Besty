@@ -84,10 +84,10 @@ const DestyBesty = () => {
   };
 
   useEffect(() => {
-    // Simulate loading
-    setTimeout(() => {
+    // Simulate loading - shorter delay for better UX
+    const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 500);
 
     // Smooth scroll initialization
     gsap.to(window, {
@@ -97,6 +97,7 @@ const DestyBesty = () => {
 
     // Cleanup on unmount
     return () => {
+      clearTimeout(timer);
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
